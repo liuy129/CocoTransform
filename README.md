@@ -8,6 +8,7 @@ Usage:
     python transformCocoLabels.py --input_coco <input.json> --output_coco <output.json> [options]
 
 Options:
+
     --image_folder <folder>         Optional folder containing images.
     --src_num_sources <int>         Number of source splits per image (default: 2).
     --tgt_num_sources <int>         Number of target splits per image (default: 1).
