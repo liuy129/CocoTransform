@@ -519,18 +519,33 @@ def main(
     save_coco_json(output_coco, images_out, annotations_out, categories, image_to_annotations)
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Transform COCO-format segmentation labels and images.")
+    parser.add_argument("--input_coco", type=str, required=True, help="Input COCO JSON file path.")
+    parser.add_argument("--output_coco", type=str, required=True, help="Output COCO JSON file path.")
+    parser.add_argument("--image_folder", type=str, default=None, help="Optional folder containing images.")
+    parser.add_argument("--src_num_sources", type=int, default=2, help="Number of source splits per image (default: 2).")
+    parser.add_argument("--tgt_num_sources", type=int, default=1, help="Number of target splits per image (default: 1).")
+    parser.add_argument("--remove_product_during_search", action="store_true", help="Remove product name suffix from filenames (default: False).")
+    parser.add_argument("--product_name", type=str, default="", help="Product name string to add/remove (default: '').")
+    parser.add_argument("--add_product_to_output_filename", action="store_true", help="Add product name to output filenames (default: False).")
+    parser.add_argument("--expected_tgt_ext", type=str, default=".jpeg", help="Output file extension (default: '.jpeg').")
+    parser.add_argument("--rotate_angle_cw", type=int, default=None, help="Optional rotation angle in degrees (clockwise).")
+    parser.add_argument("--visualize", action="store_true", help="Show mask/bbox visualizations (default: False).")
+    return parser.parse_args()
 
 if __name__ == "__main__":
+    args = parse_args()
     main(
-        input_coco=r"inputCocoPath",
-        output_coco=r"OutputPath",
-        image_folder=None,# image path for reference.
-        src_num_sources=2,
-        tgt_num_sources=1,
-        remove_product_during_search=True,
-        product_name="_appendix_before_file_extension",
-        add_product_to_output_filename=True,
-        expected_tgt_ext = ".jpeg",
-        rotate_angle_cw = 0,
-        visualize=False
+        input_coco=args.input_coco,
+        output_coco=args.output_coco,
+        image_folder=args.image_folder,
+        src_num_sources=args.src_num_sources,
+        tgt_num_sources=args.tgt_num_sources,
+        remove_product_during_search=args.remove_product_during_search,
+        product_name=args.product_name,
+        add_product_to_output_filename=args.add_product_to_output_filename,
+        expected_tgt_ext=args.expected_tgt_ext,
+        rotate_angle_cw=args.rotate_angle_cw,
+        visualize=args.visualize
     )
