@@ -8,16 +8,6 @@ Assume that source mask is a **hybrid image that stitches multiple-coregistered-
 This script is then to map a segmentation mask and bounding box from source coordinates to target coordinates.
 This is useful when splitting or merging image regions (e.g., for multi-source/multi-target scenarios).
 
-Example:
-    # Suppose you have a mask of shape (100, 200) and want to merge 2 source splits into 1 target split.
-    mask = np.ones((100, 200), dtype=np.uint8)
-    bbox = [50, 10, 100, 80]
-    new_mask, new_bbox = map_mask_to_target_coords(
-        mask, bbox, src_idx=0, src_width=200, tgt_idx=0, tgt_width=200,
-        src_num=2, tgt_num=1, total_height=100, mode="multi2single"
-    )
-    # new_mask will be the merged mask, new_bbox will be the mapped bounding box.
-
 
 Usage:
     python transformCocoLabels.py --input_coco <input.json> --output_coco <output.json> [options]
