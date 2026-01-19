@@ -4,7 +4,7 @@ Utility for transforming COCO-format segmentation labels and images.
 Supports mask decoding/encoding, cropping, padding, broadcasting, bounding box transformation,
 and mask rotation. Can be used to preprocess COCO datasets for training or analysis.
 
-Assume that source mask is a hybrid image that stitches multiple-coregistered-source-image side by side. 
+Assume that source mask is a **hybrid image that stitches multiple-coregistered-source-image side by side**. 
 This script is then to map a segmentation mask and bounding box from source coordinates to target coordinates.
 This is useful when splitting or merging image regions (e.g., for multi-source/multi-target scenarios).
 
